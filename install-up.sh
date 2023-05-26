@@ -32,7 +32,7 @@ sleep 2
 
 echo -e "$COLOR1│${NC}  $COLOR1[INFO]${NC} Download Changelog File"
 
-wget -q -O /root/changelog.txt "http://install.yudhy.net/FILE/PLUGINS/changelog.txt" && chmod +x /root/changelog.txt
+wget -q -O /root/changelog.txt "https://raw.githubusercontent.com/YaddyKakkoii/sclifetime/main/changelog.txt" && chmod +x /root/changelog.txt
 
 echo -e "$COLOR1│${NC}  $COLOR1[INFO]${NC} Read Changelog? ./root/changelog.txt"
 
