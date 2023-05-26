@@ -21,8 +21,8 @@ export COLBG1="$(cat /etc/yaddykakkoii/tema/$colornow | grep -w "BG" | cut -d: -
 ###########- END COLOR CODE -##########
 
 echo -e "$COLOR1│${NC}  $COLOR1[INFO]${NC} Remove Old Script"
-
-#rm /usr/bin/menu-bot
+rm /usr/bin/menu_bak > /dev/null 2>&1
+mv /usr/bin/menu /usr/bin/menu_bak
 
 sleep 2
 
