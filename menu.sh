@@ -2,13 +2,11 @@
 dateFromServer=$(curl -v --insecure --silent https://google.com/ 2>&1 | grep Date | sed -e 's/< Date: //')
 biji=`date +"%Y-%m-%d" -d "$dateFromServer"`
 ###########- MZ YADDY GANTENG-#########
-if [ -f "/usr/bin/mpstat" ]; then
-    #echo ada file binari tsb
-    clear
-else
-    #echo file binari tsb ga ada harap install
-    apt install sysstat
-fi
+    if [ -f "/usr/bin/mpstat" ]; then
+        clear
+    else
+        apt install sysstat
+    fi
 tomem="$(free | awk '{print $2}' | head -2 | tail -n 1 )"
 usmem="$(free | awk '{print $3}' | head -2 | tail -n 1 )"
 cpu1="$(mpstat | awk '{print $4}' | head -4 |tail -n 1)"
@@ -205,15 +203,20 @@ echo -e "  ${WH}[${COLOR1}06${WH}]${NC} ${COLOR1}• ${WH}TROJAN  ${WH}[${COLOR1
 echo -e "  ${WH}[${COLOR1}07${WH}]${NC} ${COLOR1}• ${WH}SS WS   ${WH}[${COLOR1}${status_xray}${WH}]   ${WH}[${COLOR1}15${WH}]${NC} ${COLOR1}• ${WH}SETTINGS ${WH}[${COLOR1}Menu${WH}]  $COLOR1 $NC"
 echo -e "  ${WH}[${COLOR1}08${WH}]${NC} ${COLOR1}• ${WH}PURGE   ${WH}[${COLOR1}ON${WH}]   ${WH}[${COLOR1}16${WH}]${NC} ${COLOR1}• ${WH}INFO     ${WH}[${COLOR1}Menu${WH}]  $COLOR1 $NC"
 echo -e "$COLOR1└─────────────────────────────────────────────────┘${NC}"
+function updateskrip(){
+rm -f usr/bin/install-up > /dev/null 2>&1
+wget -q -O /usr/bin/install-up "https://raw.githubusercontent.com/YaddyKakkoii/sclifetime/main/install-up.sh" && chmod +x /usr/bin/install-up
+install-up
+}
 myver="$(cat /opt/.ver)"
-if [[ $serverVersion > $myver ]]; then
-    echo -e "$COLOR1┌─────────────────────────────────────────────────┐${NC}"
-    echo -e "$COLOR1 $NC ${WH}[${COLOR1}100${WH}]${NC} ${COLOR1}• ${WH}UPDATE TO V$serverVersion${NC}" 
-    echo -e "$COLOR1└─────────────────────────────────────────────────┘${NC}"
-    up2u="updateskrip"
-else
-    up2u="menu"
-fi
+    if [[ $serverVersion > $myver ]]; then
+        echo -e "$COLOR1┌─────────────────────────────────────────────────┐${NC}"
+        echo -e "$COLOR1 $NC ${WH}[${COLOR1}100${WH}]${NC} ${COLOR1}• ${WH}UPDATE TO V$serverVersion${NC}" 
+        echo -e "$COLOR1└─────────────────────────────────────────────────┘${NC}"
+        up2u="updateskrip"
+    else
+        up2u="menu"
+    fi
 echo -e "$COLOR1┌─────────────────────────────────────────────────┐$NC"
 echo -e "$COLOR1 $NC ${WH}Version     ${COLOR1}:${WH} $(cat /opt/.ver) Latest Version${NC}"
 echo -e "$COLOR1 $NC ${WH}Client Name ${COLOR1}: ${WH}MZ YADDY GANTENG 💯 ${NC}"
@@ -247,7 +250,7 @@ case $opt in
 14) clear ; gantixraycore ;;
 15) clear ; menu-set ;;
 16) clear ; info ;;
-17) clear ; purgenginxyaddy ; sleep 2 ; purgxyaddy ;;
+17) clear ; install-up ;;
 100) clear ; $up2u ;;
 00 | 0) clear ; menu ;;
 x | X) clear ; exit ;;
