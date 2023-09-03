@@ -203,17 +203,17 @@ echo -e "  ${WH}[${COLOR1}06${WH}]${NC} ${COLOR1}• ${WH}TROJAN  ${WH}[${COLOR1
 echo -e "  ${WH}[${COLOR1}07${WH}]${NC} ${COLOR1}• ${WH}SS WS   ${WH}[${COLOR1}${status_xray}${WH}]   ${WH}[${COLOR1}15${WH}]${NC} ${COLOR1}• ${WH}SETTINGS ${WH}[${COLOR1}Menu${WH}]  $COLOR1 $NC"
 echo -e "  ${WH}[${COLOR1}08${WH}]${NC} ${COLOR1}• ${WH}PURGE   ${WH}[${COLOR1}ON${WH}]   ${WH}[${COLOR1}16${WH}]${NC} ${COLOR1}• ${WH}INFO     ${WH}[${COLOR1}Menu${WH}]  $COLOR1 $NC"
 echo -e "$COLOR1└─────────────────────────────────────────────────┘${NC}"
-function updateskrip(){
-rm -f usr/bin/install-up > /dev/null 2>&1
-wget -q -O /usr/bin/install-up "https://raw.githubusercontent.com/YaddyKakkoii/sclifetime/main/install-up.sh" && chmod +x /usr/bin/install-up
-install-up
+function updateskripp(){
+rm -f usr/bin/updateskrip > /dev/null 2>&1
+wget -q -O /usr/bin/updateskrip "https://raw.githubusercontent.com/YaddyKakkoii/sclifetime/main/install-up.sh" && chmod +x /usr/bin/updateskrip
+updateskrip
 }
 myver="$(cat /opt/.ver)"
     if [[ $serverVersion > $myver ]]; then
         echo -e "$COLOR1┌─────────────────────────────────────────────────┐${NC}"
         echo -e "$COLOR1 $NC ${WH}[${COLOR1}100${WH}]${NC} ${COLOR1}• ${WH}UPDATE TO V$serverVersion${NC}" 
         echo -e "$COLOR1└─────────────────────────────────────────────────┘${NC}"
-        up2u="updateskrip"
+        up2u="updateskripp"
     else
         up2u="menu"
     fi
