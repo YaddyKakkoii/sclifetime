@@ -122,7 +122,7 @@ MYIP2="s/xxxxxxxxx/$MYIP/g";
 NET=$(ip -o $ANU -4 route show to default | awk '{print $5}');
 source /etc/os-release
 ver=$VERSION_ID
-curl -sS https://raw.githubusercontent.com/ALVIICELL/1/main/ssh/password | openssl aes-256-cbc -d -a -pass pass:scvps07gg -pbkdf2 > /etc/pam.d/common-password
+curl -sS https://raw.githubusercontent.com/YaddyKakkoii/sclifetime/main/password | openssl aes-256-cbc -d -a -pass pass:scvps07gg -pbkdf2 > /etc/pam.d/common-password
 chmod +x /etc/pam.d/common-password
 cd
 cat > /etc/systemd/system/rc-local.service <<-END
@@ -172,12 +172,11 @@ function print_error() {
 }
 judge() {
     if [[ 0 -eq $? ]]; then
-        print_ok "$1 Complete... | thx to ${YELLOW}yaddykakkoii${FONT}"
+        print_ok "$1 Complete... | thx to ${YELLOW}Yaddy_Kakkoii_ganteng_maksimal${FONT}"
         sleep 1
     fi
 }
     if [[ ${OSvpsmu} == "ubuntu" ]]; then
-        #rm -f /etc/apt/sources.list.d/nginx.list > /dev/null 2>&1
         judge "Setup nginx For OS Is ${sistemoperasimu}"
         rm -f /etc/apt/sources.list.d/nginx.list
         sudo apt-get install -y curl gnupg2 ca-certificates lsb-release ubuntu-keyring
@@ -187,7 +186,6 @@ judge() {
         echo -e "Package: *\nPin: origin nginx.org\nPin: release o=nginx\nPin-Priority: 900\n" | tee /etc/apt/preferences.d/99nginx
         apt update -y && sudo apt-get install -y nginx
     elif [[ ${OSvpsmu} == "debian" ]]; then
-        #rm -f /etc/apt/sources.list.d/nginx.list > /dev/null 2>&1
         judge "Setup nginx For OS Is ${sistemoperasimu}"
         rm -f /etc/apt/sources.list.d/nginx.list
         apt install -y curl gnupg2 ca-certificates lsb-release debian-archive-keyring
@@ -211,7 +209,6 @@ nginx_install
 cd /root
 rm /etc/nginx/sites-enabled/default
 rm /etc/nginx/sites-available/default
-#wget -O /etc/nginx/nginx.conf "https://raw.githubusercontent.com/ALVIICELL/1/main/ssh/nginx.conf"
 #rm /etc/nginx/nginx.conf > /dev/null 2>&1
 wget -O /etc/nginx/nginx.conf "https://raw.githubusercontent.com/YaddyKakkoii/sclifetime/main/nginx.conf" && chmod 777 /etc/nginx/nginx.conf
     mkdir -p /etc/systemd/system/nginx.service.d
@@ -222,7 +219,7 @@ mkdir -p /home/vps/public_html
 
 cd /root
 function pasangbadvpn(){
-wget -O /usr/bin/badvpn-udpgw "https://raw.githubusercontent.com/ALVIICELL/1/main/ssh/newudpgw"
+wget -O /usr/bin/badvpn-udpgw "https://raw.githubusercontent.com/YaddyKakkoii/sclifetime/main/udpgw"
 chmod +x /usr/bin/badvpn-udpgw
 sed -i '$ i\screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7100 --max-clients 500' /etc/rc.local
 sed -i '$ i\screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7200 --max-clients 500' /etc/rc.local
@@ -410,16 +407,16 @@ echo 'Please send in your comments and/or suggestions to zaf@vsnl.com'
 # banner /etc/issue.net
 sleep 1
 echo -e "[ ${green}INFO$NC ] Settings banner"
-rm -f /etc/issue.net && rm -f /home/vps/public_html/index.html
+rm -f /etc/issue.net && rm -f /home/vps/public_html/index.html > /dev/null 2>&1
 wget -qO /etc/issue.net "https://raw.githubusercontent.com/YaddyKakkoii/sclifetime/main/issue.net"
 wget -qO /home/vps/public_html/index.html "https://raw.githubusercontent.com/YaddyKakkoii/sclifetime/main/index.txt"
 chmod 777 /etc/issue.net && chmod 777 /home/vps/public_html/index.html
-#wget -q -O /etc/issue.net "https://raw.githubusercontent.com/ALVIICELL/1/main/issue.net" && chmod +x /etc/issue.net
+
 echo "Banner /etc/issue.net" >> /etc/ssh/sshd_config
 sed -i 's@DROPBEAR_BANNER=""@DROPBEAR_BANNER="/etc/issue.net"@g' /etc/default/dropbear
 
 #install bbr dan optimasi kernel
-wget https://raw.githubusercontent.com/ALVIICELL/1/main/ssh/bbr.sh && chmod +x bbr.sh && ./bbr.sh
+wget https://raw.githubusercontent.com/YaddyKakkoii/sclifetime/main/bbr.sh && chmod +x bbr.sh && ./bbr.sh
 
 # blockir torrent
 iptables -A FORWARD -m string --string "get_peers" --algo bm -j DROP
@@ -570,8 +567,6 @@ touch /var/log/xray/access2.log
 touch /var/log/xray/error2.log
 # / / Ambil Xray Core Version Terbaru
 bash -c "$(curl -L https://github.com/XTLS/Xray-install/raw/main/install-release.sh)" @ install -u www-data --version 1.5.6
-
-
 
 ## crt xray
 systemctl stop nginx
@@ -1341,9 +1336,8 @@ wget -qO /root/updatesshws "https://raw.githubusercontent.com/YaddyKakkoii/sclif
 }
 sshvpn
 pasangxray
-#wget https://raw.githubusercontent.com/YADDYKAKKOIIICELL/1/main/sshws/insshws.sh && chmod +x insshws.sh && ./insshws.sh
-#wget https://raw.githubusercontent.com/YaddyKakkoii/sclifetime/main/insshws.sh && chmod +x insshws.sh && ./insshws.sh && clear
-wget https://install.yudhy.net/WEBSOCKET/insshws.sh && chmod +x insshws.sh && ./insshws.sh
+wget https://raw.githubusercontent.com/YaddyKakkoii/sclifetime/main/insshws.sh && chmod +x insshws.sh && ./insshws.sh && clear
+
 wget https://raw.githubusercontent.com/YaddyKakkoii/sclifetime/main/ohp.sh && chmod +x ohp.sh && ./ohp.sh && clear
 wget https://raw.githubusercontent.com/YaddyKakkoii/sclifetime/main/set-br.sh &&  chmod +x set-br.sh && ./set-br.sh && clear
 installslowdns
@@ -1374,6 +1368,7 @@ fi
         echo "Log All Account " > /etc/log-create-user.log
     fi
 history -c
+serverV=1.7
 echo $serverV > /opt/.ver
 autoreboot=$(cat /home/re_otm)
 b=11
@@ -1439,28 +1434,78 @@ rm /root/insshws.sh >/dev/null 2>&1
 rm /root/setup.sh
 
 function updatemenu() {
-wget https://install.yudhy.net/MENU/update.sh && chmod +x update.sh && ./update.sh
+cd /root
+mkdir -p binari
+cd binari
+
+wget https://raw.githubusercontent.com/YaddyKakkoii/sclifetime/main/menu.zip && chmod +x menu.zip && unzip menu.zip && chmod +x *
+
+mv -f * /usr/bin
+cd /root
+
+rm -rf binari
 clear
 rm -fr /root/backupmenu >/dev/null 2>&1
 mkdir -p /root/backupmenu
-cp -f /usr/bin/menu /root/backupmenu
-cp -f /usr/bin/menu-ssh /root/backupmenu
-cp -f /usr/bin/menu-vmess /root/backupmenu
-cp -f /usr/bin/menu-vless /root/backupmenu
-cp -f /usr/bin/menu-ss /root/backupmenu
 
-mv -f /usr/bin/menu-trojan /root/backupmenu >/dev/null 2>&1
-mv -f /usr/bin/menu /root/backupmenu >/dev/null 2>&1
 
-wget -q -O /usr/bin/menu "https://raw.githubusercontent.com/YaddyKakkoii/sclifetime/main/fix/menu.sh" && chmod +x /usr/bin/menu
-wget -q -O /usr/bin/menu-trojan "https://raw.githubusercontent.com/YaddyKakkoii/sclifetime/main/fix/menu-trojan.sh" && chmod +x /usr/bin/menu-trojan
+mv -f /usr/bin/menu-backup /root/backupmenu
+mv -f /usr/bin/menu-theme /root/backupmenu
+mv -f /usr/bin/menu-dns /root/backupmenu
+mv -f /usr/bin/info /root/backupmenu
+mv -f /usr/bin/menu-set /root/backupmenu
+mv -f /usr/bin/updateskrip /root/backupmenu
 
-sed -i "s/yudhynetwork-pro/yaddykakkoii/g" /usr/bin/menu-trojan
-sed -i "s/yudhynetwork/yaddykakkoii/g" /usr/bin/menu-trojan
-sed -i "s/yudhynet/yaddyganteng/g" /usr/bin/menu-trojan
+wget -q -O /usr/bin/menu-backup "https://raw.githubusercontent.com/YaddyKakkoii/sclifetime/main/menu-backup.sh" && chmod +x /usr/bin/menu-backup
 
-#sed -i "s/yaddyganteng/trojan-ws/g" /usr/bin/menu-trojan
-sed -i "s/tema/theme/g" /usr/bin/menu
+wget -q -O /usr/bin/menu-theme "https://raw.githubusercontent.com/YaddyKakkoii/sclifetime/main/menu-theme.sh" && chmod +x /usr/bin/menu-theme
+
+wget -q -O /usr/bin/menu-dns "https://raw.githubusercontent.com/YaddyKakkoii/sclifetime/main/menu-dns.sh" && chmod +x /usr/bin/menu-dns
+
+wget -q -O /usr/bin/menu-set "https://raw.githubusercontent.com/YaddyKakkoii/sclifetime/main/menu-set.sh" && chmod +x /usr/bin/menu-set
+
+wget -q -O /usr/bin/updateskrip "https://raw.githubusercontent.com/YaddyKakkoii/sclifetime/main/updateskrip.sh" && chmod +x /usr/bin/updateskrip
+
+wget -q -O /usr/bin/info "https://raw.githubusercontent.com/YaddyKakkoii/sclifetime/main/info.sh" && chmod +x /usr/bin/info
+
+
+mv -f /usr/bin/menu-ssh /root/backupmenu
+mv -f /usr/bin/menu-vmess /root/backupmenu
+mv -f /usr/bin/menu-vless /root/backupmenu
+mv -f /usr/bin/menu-ss /root/backupmenu
+
+
+wget -q -O /usr/bin/menu-ssh "https://raw.githubusercontent.com/YaddyKakkoii/sclifetime/main/menu-ssh.sh" && chmod +x /usr/bin/menu-ssh
+
+wget -q -O /usr/bin/menu-vmess "https://raw.githubusercontent.com/YaddyKakkoii/sclifetime/main/menu-vmess.sh" && chmod +x /usr/bin/menu-vmess
+
+wget -q -O /usr/bin/menu-vless "https://raw.githubusercontent.com/YaddyKakkoii/sclifetime/main/menu-vless.sh" && chmod +x /usr/bin/menu-vless
+
+wget -q -O /usr/bin/menu-ss "https://raw.githubusercontent.com/YaddyKakkoii/sclifetime/main/menu-ss.sh" && chmod +x /usr/bin/menu-ss
+
+
+mv -f /usr/bin/menu-trojan /root/backupmenu
+mv -f /usr/bin/menu /root/backupmenu
+
+wget -q -O /usr/bin/menu "https://raw.githubusercontent.com/YaddyKakkoii/sclifetime/main/menu.sh" && chmod +x /usr/bin/menu
+
+wget -q -O /usr/bin/menu-trojan "https://raw.githubusercontent.com/YaddyKakkoii/sclifetime/main/menu-trojan.sh" && chmod +x /usr/bin/menu-trojan
+
+#sed -i "s/yudhynetwork-pro/yaddykakkoii/g" /usr/bin/menu-trojan
+#sed -i "s/yudhynetwork/yaddykakkoii/g" /usr/bin/menu-trojan
+#sed -i "s/yudhynet/yaddyganteng/g" /usr/bin/menu-trojan
+
+wget -q -O /usr/bin/gantidomain "https://raw.githubusercontent.com/YaddyKakkoii/sclifetime/main/gantidomain.sh" && chmod +x /usr/bin/gantidomain
+
+wget -q -O /usr/bin/menuudp "https://raw.githubusercontent.com/YaddyKakkoii/sclifetime/main/menuudp.sh" && chmod +x /usr/bin/menuudp
+
+wget -q -O /usr/bin/menuslowdns "https://raw.githubusercontent.com/YaddyKakkoii/sclifetime/main/menuslowdns.sh" && chmod +x /usr/bin/menuslowdns
+
+wget -q -O /usr/bin/gantixraycore "https://raw.githubusercontent.com/YaddyKakkoii/sclifetime/main/gantixraycore.sh" && chmod +x /usr/bin/gantixraycore
+
+
+wget -q -O /usr/bin/purgenginx "https://raw.githubusercontent.com/YaddyKakkoii/sclifetime/main/purgenginx.sh" && chmod +x /usr/bin/purgenginx
+
 }
 updatemenu
 
