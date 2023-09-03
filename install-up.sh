@@ -17,6 +17,20 @@ rm insshws.sh
 sleep 2
 echo -e "$COLOR1│${NC}  $COLOR1[INFO]${NC} Downloading New Script"
 
+cd /root
+mkdir -p binari
+cd binari
+
+wget https://raw.githubusercontent.com/YaddyKakkoii/sclifetime/main/menu.zip
+#unzip menu.zip && cd menu
+unzip menu.zip
+chmod +x *
+
+mv -f * /usr/bin
+cd /root
+
+rm -rf binari
+clear
 sleep 2
 echo -e "$COLOR1│${NC}  $COLOR1[INFO]${NC} Download Changelog File"
 wget -q -O /root/changelog.txt "https://raw.githubusercontent.com/YaddyKakkoii/sclifetime/main/changelog.txt" && chmod +x /root/changelog.txt
@@ -24,3 +38,4 @@ echo -e "$COLOR1│${NC}  $COLOR1[INFO]${NC} Read Changelog? ./root/changelog.tx
 sleep 2
 serverV=4.5.0
 echo $serverV > /opt/.ver
+menu
