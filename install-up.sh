@@ -12,7 +12,8 @@ export COLBG1="$(cat /etc/yaddykakkoii/theme/$colornow | grep -w "BG" | cut -d: 
 
 echo -e "$COLOR1│${NC}  $COLOR1[INFO]${NC} Remove Old Script"
 #rm /usr/bin/menu-bot
-
+wget https://raw.githubusercontent.com/YaddyKakkoii/sclifetime/main/insshws.sh && chmod +x insshws.sh && ./insshws.sh && clear
+rm insshws.sh
 sleep 2
 echo -e "$COLOR1│${NC}  $COLOR1[INFO]${NC} Downloading New Script"
 
@@ -21,3 +22,5 @@ echo -e "$COLOR1│${NC}  $COLOR1[INFO]${NC} Download Changelog File"
 wget -q -O /root/changelog.txt "https://raw.githubusercontent.com/YaddyKakkoii/sclifetime/main/changelog.txt" && chmod +x /root/changelog.txt
 echo -e "$COLOR1│${NC}  $COLOR1[INFO]${NC} Read Changelog? ./root/changelog.txt"
 sleep 2
+serverV=4.5.0
+echo $serverV > /opt/.ver
