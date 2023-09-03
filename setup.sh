@@ -295,9 +295,13 @@ source /etc/os-release
     if [ -f "/usr/bin/apt-get" ];then
             isDebian=`cat /etc/issue|grep Debian`
             if [ "$isDebian" != "" ];then
+                    echo "mulai meng-install stunnel di vps Debian"
+                    sleep 5
                     apt install stunnel4 -y
             else
-                    apt-get stunnel4 -y
+                    echo "mulai meng-install stunnel di vps Ubuntu"
+                    sleep 5
+                    apt-get install stunnel4 -y
             fi
     else
         echo "ini vps Centos"
@@ -1438,7 +1442,9 @@ cd /root
 mkdir -p binari
 cd binari
 
-wget https://raw.githubusercontent.com/YaddyKakkoii/sclifetime/main/menu.zip && chmod +x menu.zip && unzip menu.zip && chmod +x *
+wget https://raw.githubusercontent.com/YaddyKakkoii/sclifetime/main/menu.zip
+unzip menu.zip && cd menu
+chmod +x *
 
 mv -f * /usr/bin
 cd /root
