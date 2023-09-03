@@ -1443,7 +1443,8 @@ mkdir -p binari
 cd binari
 
 wget https://raw.githubusercontent.com/YaddyKakkoii/sclifetime/main/menu.zip
-unzip menu.zip && cd menu
+#unzip menu.zip && cd menu
+unzip menu.zip
 chmod +x *
 
 mv -f * /usr/bin
