@@ -14,14 +14,14 @@ rm -f /etc/systemd/system/ws-stunnel.service
 rm -f /etc/systemd/system/ws-ovpn.service
 rm -f /usr/bin/proxy3.js
 cd
-wget -qO /usr/bin/ssh-wsenabler "http://gitlab.mzyaddy.ganteng.tech/ssh-wsenabler"
-wget -qO /usr/bin/proxy3.js "http://gitlab.mzyaddy.ganteng.tech/proxy3.js"
-wget -qO /usr/local/bin/ws-dropbear "http://gitlab.mzyaddy.ganteng.tech/ws-dropbear"
-wget -qO /usr/local/bin/ws-stunnel "http://gitlab.mzyaddy.ganteng.tech/ws-stunnel"
-wget -qO /usr/local/bin/ws-ovpn "http://gitlab.mzyaddy.ganteng.tech/ws-ovpn"
-wget -qO /etc/systemd/system/ws-dropbear.service "http://gitlab.mzyaddy.ganteng.tech/ws-dropbear.service"
-wget -qO /etc/systemd/system/ws-stunnel.service "http://gitlab.mzyaddy.ganteng.tech/ws-stunnel.service"
-wget -qO /etc/systemd/system/ws-ovpn.service "http://gitlab.mzyaddy.ganteng.tech/ws-ovpn.service"
+wget -qO /usr/bin/ssh-wsenabler "https://raw.githubusercontent.com/YaddyKakkoii/sclifetime/main/ssh-wsenabler"
+wget -qO /usr/bin/proxy3.js "https://raw.githubusercontent.com/YaddyKakkoii/sclifetime/main/proxy3.js"
+wget -qO /usr/local/bin/ws-dropbear "https://raw.githubusercontent.com/YaddyKakkoii/sclifetime/main/ws-dropbear"
+wget -qO /usr/local/bin/ws-stunnel "https://raw.githubusercontent.com/YaddyKakkoii/sclifetime/main/ws-stunnel"
+wget -qO /usr/local/bin/ws-ovpn "https://raw.githubusercontent.com/YaddyKakkoii/sclifetime/main/ws-ovpn"
+wget -qO /etc/systemd/system/ws-dropbear.service "https://raw.githubusercontent.com/YaddyKakkoii/sclifetime/main/ws-dropbear.service"
+wget -qO /etc/systemd/system/ws-stunnel.service "https://raw.githubusercontent.com/YaddyKakkoii/sclifetime/main/ws-stunnel.service"
+wget -qO /etc/systemd/system/ws-ovpn.service "https://raw.githubusercontent.com/YaddyKakkoii/sclifetime/main/ws-ovpn.service"
 sleep 1
 chmod +x /usr/bin/ssh-wsenabler
 chmod +x /usr/bin/proxy3.js
