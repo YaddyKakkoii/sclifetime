@@ -1,0 +1,91 @@
+<html>  
+  <HEAD>
+<title>Konnichiwa AULIA ChaN</title>
+<script language="JavaScript">var numraindrops="150";var speed="5";var rainsize="2";var wind="left";var genxgallery="";function tb5_makeArray(n){this.length=n;return this.length;}
+tb5_messages=new tb5_makeArray(3);tb5_messages[0]="./ Hacked by";tb5_messages[1]="Mr.HaurgeulisX196 .";tb5_messages[2]="Be Secure, Your Security Get Down !";tb5_rptType='infinite';tb5_rptNbr=10;tb5_speed=50;tb5_delay=2000;var tb5_counter=1;var tb5_currMsg=0;var tb5_stsmsg="";function tb5_shuffle(arr){var k;for(i=0;i<arr.length;i++){k=Math.round(Math.random()*(arr.length-i-1))+i;temp=arr[i];arr[i]=arr[k];arr[k]=temp;}
+return arr;}
+tb5_arr=new tb5_makeArray(tb5_messages[tb5_currMsg].length);tb5_sts=new tb5_makeArray(tb5_messages[tb5_currMsg].length);for(var i=0;i<tb5_messages[tb5_currMsg].length;i++){tb5_arr[i]=i;tb5_sts[i]="_";}
+tb5_arr=tb5_shuffle(tb5_arr);function tb5_init(n){var k;if(n==tb5_arr.length){if(tb5_currMsg==tb5_messages.length-1){if((tb5_rptType=='finite')&&(tb5_counter==tb5_rptNbr)){clearTimeout(tb5_timerID);return;}tb5_counter++;tb5_currMsg=0;}else{tb5_currMsg++;}n=0;tb5_arr=new tb5_makeArray(tb5_messages[tb5_currMsg].length);tb5_sts=new tb5_makeArray(tb5_messages[tb5_currMsg].length);for(var i=0;i<tb5_messages[tb5_currMsg].length;i++){tb5_arr[i]=i;tb5_sts[i]="_";}tb5_arr=tb5_shuffle(tb5_arr);tb5_sp=tb5_delay;}
+else{tb5_sp=tb5_speed;k=tb5_arr[n];tb5_sts[k]=tb5_messages[tb5_currMsg].charAt(k);tb5_stsmsg="";for(var i=0;i<tb5_sts.length;i++)tb5_stsmsg+=tb5_sts[i];document.title=tb5_stsmsg;n++;}tb5_timerID=setTimeout("tb5_init("+n+")",tb5_sp);}
+function tb5_randomizetitle(){tb5_init(0);}
+tb5_randomizetitle();</script> 
+
+
+
+
+<base target='_blank'/> 
+</head> 
+
+<title>~:: ./Yaditamvan | Indonesian Cyber Freedom :: ~.</title>
+
+<meta name="description" content="hacked by indonesian cyber freedom.. one mistake can make u crazy, so plz be safety .. Remember! Safety can be fun~ ezzzorrry cnd dlo "/>
+<meta name="keywords" content="Hacked by: Yaditamvan,Mr.HaurgeulisX196 ,defaced by Mr.HaurgeulisX196,Owned by Mr.HaurgeulisX196,196 TeaM"/>
+<meta name="author" content="Indonesian Cyber Freedom">
+<meta content='Hacked by Mr.HaurgeulisX196' name='Abstract'/>
+<meta content='Hacked by Mr.HaurgeulisX196' name='subject'/>
+<meta content='Hacked by Mr.HaurgeulisX196' name='copyright'/>
+<meta name="robots" content="all"/> 
+<meta name="robots schedule" content="auto"/> 
+<meta name="distribution" content="global"/> 
+<link rel="icon" href="http://s27.postimg.org/ptllbu0oj/incef.png"/>
+
+  </HEAD>    
+  <link href='http://fonts.googleapis.com/css?family=Orbitron:700' rel='stylesheet' type='text/css'>
+
+  <link href='http://fonts.googleapis.com/css?family=Grand%20Hotel' rel='stylesheet' type='text/css'>
+
+
+<link href='http://fonts.googleapis.com/css?family=Indie%20Flower' rel='stylesheet' type='text/css'>
+  
+  <body bgcolor="#000000">   
+  <body oncontextmenu='return false;' onkeydown='return false;' onmousedown='return false;'>  
+    
+  <DIV align="right"><FONT style="FONT-SIZE: 13pt" face="Courier" color="white"><center><br />
+  <p align="center"><img src ="http://xblast.com/prank/cgi-bin/blog/aul2.jpg" height="400" width="390"></p>
+  <p id="example2"><p align="center"><font  face="Orbitron"  size=4 style="color: #white; " > - Indonesian Cyber Freedom -<br>
+
+<br><font face="Orbitron" size="2" color="Green">dEnny_Attacker - Yaddy D Phreaker - Mr.DellatioNx196 - SvN_NeVerMore - Achan Dot ID - CaptSalkus48 <br> Mr.HaurgeulisX196 - SengkeL - Railver6 - Togel3739 - Hit Girl - Ghost99 <br><font face="Orbitron" size="2" color="pink">Rona404 - yaddy Xpecto - ./Dawn_angel - nG0xz - Fathur.xZ <br> aAn - Bangka_Boys - DUR74N4 - ./r0cky_n00bz<br><br>
+  
+
+
+<center>
+
+<a href="http://s.id/1EBPu" target="_blank"> <img src="http://zonehmirrors.org/defaced/2015/03/19/rutanbantul.co.id/img04.arabsh.com/uploads/image/2014/07/06/0c3f464263f104.png" height="34" width="34">
+</a><font  face="Indie Flower"  size=4 style="color: #7FFF00; text-shadow: 0px 1px 7px 
+
+white;" > ./ about me </font> </b>
+
+<a href="https://t.me/Crystalllz" target="_blank"> <img src="http://zonehmirrors.org/defaced/2015/03/19/rutanbantul.co.id/img06.arabsh.com/uploads/image/2014/07/06/0c3f464263f107.png" height="34" width="34"><a style="text-decoration: none; color: #333333" >
+
+
+
+
+</center>
+<br>
+
+
+<font  face="Indie Flower"  size=4 style="color: #00FFFF; text-shadow: 0px 1px 7px 
+
+white;" >&copy; 2017 <font  face="Indie Flower"  size=4 style="color: #FF00FF; text-shadow: 0px 1px 7px 
+
+white;" > ./ Indonesian <font  face="Indie Flower"  size=4 style="color: #87CEEB; text-shadow: 0px 1px 7px 
+
+white;" >Hacker <font  face="Indie Flower"  size=4 style="color: #FFF5EE; text-shadow: 0px 1px 7px 
+
+white;" >Rulez
+<br>
+
+
+<!-- --------Cursor--------- -->
+<style type='text/css'>body,a,a:link{cursor:url(http:/4.bp.blogspot.com/-hAF7tPUnmEE/TwGR3lRH0EI/AAAAAAAAAs8/6pki22hc3NE/s1600/ass.png), default}a:hover{cursor:url(http://3.bp.blogspot.com/-bRikgqeZx0Q/TwGR4MUEC7I/AAAAAAAAAtA/isJmS0r35Qw/s1600/pointer.png),wait}</style>
+
+
+<p id="embed">
+<iframe width="0" height="0" src="http://www.youtube.com/embed/GNtrJoXHD8Y?rel=0&autoplay=1&loop=1&playlist=7dKd3GQYgFI" frameborder="0" allowfullscreen></iframe>
+</p>
+
+
+ <!--HaCkeD bY./Yaditamvan max -->
+ 
+</BODY>    
+</html>
