@@ -246,7 +246,7 @@ case $opt in
 10) clear ; menu-theme ;;
 11) clear ; menu-backup ;;
 12) clear ; gantidomain ;;
-13) clear ; updateskrip ;;
+13) clear ; updateskripp ;;
 14) clear ; gantixraycore ;;
 15) clear ; menu-set ;;
 16) clear ; info ;;
