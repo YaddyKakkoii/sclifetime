@@ -161,7 +161,7 @@ upminutes=`uptime -p | awk '{print $4,$5}' | cut -d , -f1`
 uptimecek=`uptime -p | awk '{print $6,$7}' | cut -d , -f1`
 cekup=`uptime -p | grep -ow "day"`
 IPVPS=$(curl -s ipinfo.io/ip )
-serverVersion=$( curl -sS https://gitlab.mzyaddy.ganteng.tech/update/versinew)
+serverVersion=$( curl -sS https://raw.githubusercontent.com/YaddyKakkoii/sclifetime/main/versi)
 #echo -e "$COLOR1 $NC ${WH}Public Key     ${COLOR1}: ${WH}$(cat /etc/slowdns/server.pub)"
 uis="${COLOR1}Premium Version$NC"
 echo -e "$COLOR1 $NC ${WH}User Roles     ${COLOR1}: ${WH}$uis"
