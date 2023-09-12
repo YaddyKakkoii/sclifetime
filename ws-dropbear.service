@@ -1,5 +1,5 @@
 [Unit]
-Description=Websocket-OpenSSH By YaddyKakkoii
+Description=Websocket-Dropbear By YaddyKakkoii
 Documentation=https://google.com
 After=network.target nss-lookup.target
 
