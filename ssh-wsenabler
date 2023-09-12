@@ -3,8 +3,10 @@
 #portdb=143
 #portdb2=`cat /root/log-install.txt | grep -w "Dropbear" | cut -d: -f2|sed 's/ //g' | cut -f1 -d","`
 #portdb2=109
-portsshws=`cat /root/log-install.txt | grep -w "SSH Websocket" | cut -d: -f2 | awk '{print $1}'`
-wsssl=`cat /root/log-install.txt | grep -w "SSH SSL Websocket" | cut -d: -f2 | awk '{print $1}'`
+#portsshws=`cat /root/log-install.txt | grep -w "SSH Websocket" | cut -d: -f2 | awk '{print $1}'`
+#portsshws=80
+#wsssl=`cat /root/log-install.txt | grep -w "SSH SSL Websocket" | cut -d: -f2 | awk '{print $1}'`
+#wsssl=443
 
 #tmux new-session -d -s sshws "node /usr/bin/proxy3.js -dport $portdb -mport $portsshws -o /root/sshws.log"
 tmux new-session -d -s sshws "node /usr/bin/proxy3.js -dport 143 -mport 80 -o /root/sshws.log
