@@ -20,7 +20,7 @@ rm -f /etc/systemd/system/ws-openssh.service
 rm -f /etc/systemd/system/ws-ovpn.service
 rm -f /usr/bin/proxy3.js
 }
-#setopserviswebsoket
+setopserviswebsoket
 cd
 wget -qO /usr/bin/ssh-wsenabler "https://raw.githubusercontent.com/YaddyKakkoii/sclifetime/main/ssh-wsenabler"
 wget -qO /usr/bin/proxy3.js "https://raw.githubusercontent.com/YaddyKakkoii/sclifetime/main/proxy3.js"
