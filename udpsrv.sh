@@ -187,7 +187,7 @@ klik to download : $LINKBACKUP
 <code>────────────────────</code>
 <i>Automatic Notification from</i>
 <i>Github YaddyKakkoii</i> 
-"'&reply_markup={"inline_keyboard":[[{"text":"ᴏʀᴅᴇʀ🐳","url":"https://t.me/Crystalllz"},{"text":"ɪɴꜱᴛᴀʟʟ🐬","url":"https://t.me/Crystalllz"}]]}'
+"'&reply_markup={"inline_keyboard":[[{"text":"ᴏʀᴅᴇʀ","url":"https://t.me/Crystalllz"},{"text":"ɪɴꜱᴛᴀʟʟ","url":"https://t.me/Crystalllz"}]]}'
 
     bt=6129559221:AAGAkfVQqdi_So98HmZ6edqKovj-I-ldFQQ
     ci=1117211252
