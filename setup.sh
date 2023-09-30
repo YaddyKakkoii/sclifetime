@@ -1810,5 +1810,6 @@ wget https://raw.githubusercontent.com/YaddyKakkoii/sclifetime/main/menu.zip
 unzip menu.zip && chmod 777 * && rm -f menu.zip && mv * /usr/bin/
 
 cd
+echo "untuk yang mengalami masalah nginx off atau sshws off silakan hubungi kontak tele t.me/Crystalllz untuk proses fixnya"
 sleep 10
 reboot
