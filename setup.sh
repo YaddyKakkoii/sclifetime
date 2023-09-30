@@ -253,7 +253,61 @@ source /etc/os-release
         sleep 3s
     fi
 }
-instalwebserver
+#instalwebserver
+
+function nginx_install() {
+Green="\e[92;1m"
+RED="\033[31m"
+BLUE="\033[36m"
+YELLOW="\033[33m"
+FONT="\033[0m"
+OK="${Green}--->${FONT}"
+ERROR="${RED}[ERROR]${FONT}"
+REDBG="\033[41;37m"
+OSvpsmu=$(cat /etc/os-release | grep -w ID | head -n1 | sed 's/=//g' | sed 's/"//g' | sed 's/ID//g')
+sistemoperasimu=$(cat /etc/os-release | grep -w PRETTY_NAME | head -n1 | sed 's/=//g' | sed 's/"//g' | sed 's/PRETTY_NAME//g')
+function print_ok() {
+    echo -e "${OK} ${BLUE} $1 ${FONT}"
+}
+function print_error() {
+    echo -e "${ERROR} ${REDBG} $1 ${FONT}"
+}
+function judge() {
+    if [[ 0 -eq $? ]]; then
+        print_ok "$1 Complete... | thx to ${YELLOW}yaddykakkoii${FONT}"
+        sleep 1
+    fi
+}
+    if [[ ${OSvpsmu} == "ubuntu" ]]; then
+        judge "Setup nginx For OS Is ${sistemoperasimu}"
+        rm -f /etc/apt/sources.list.d/nginx.list
+        sudo apt-get install -y curl gnupg2 ca-certificates lsb-release ubuntu-keyring
+        curl https://nginx.org/keys/nginx_signing.key | gpg --dearmor | tee /usr/share/keyrings/nginx-archive-keyring.gpg >/dev/null
+        echo "deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] \
+        http://nginx.org/packages/ubuntu $(lsb_release -cs) nginx" | tee /etc/apt/sources.list.d/nginx.list
+        echo -e "Package: *\nPin: origin nginx.org\nPin: release o=nginx\nPin-Priority: 900\n" | tee /etc/apt/preferences.d/99nginx
+        apt update -y && sudo apt-get install -y nginx
+    elif [[ ${OSvpsmu} == "debian" ]]; then
+        judge "Setup nginx For OS Is ${sistemoperasimu}"
+        rm -f /etc/apt/sources.list.d/nginx.list
+        apt install -y curl gnupg2 ca-certificates lsb-release debian-archive-keyring
+        curl https://nginx.org/keys/nginx_signing.key | gpg --dearmor | tee /usr/share/keyrings/nginx-archive-keyring.gpg >/dev/null
+        echo "deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] \
+        http://nginx.org/packages/debian $(lsb_release -cs) nginx" | tee /etc/apt/sources.list.d/nginx.list
+        echo -e "Package: *\nPin: origin nginx.org\nPin: release o=nginx\nPin-Priority: 900\n" | tee /etc/apt/preferences.d/99nginx
+        apt update -y && apt install -y nginx
+    else
+        echo -e "${RED} Your OS Is Not Supported ( ${YELLOW}${sistemoperasimu} ${NC}"
+        sleep 3
+        exit 1
+    fi
+apt -y --purge remove apache2*
+apt-get purge apache2 -y
+sudo apt clean
+sudo apt autoclean
+sudo apt autoremove -y
+}
+nginx_install
 
 cd
 rm /etc/nginx/sites-enabled/default
