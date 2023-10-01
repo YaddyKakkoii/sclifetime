@@ -1440,7 +1440,7 @@ rm -f /etc/systemd/system/ws-openssh.service
 rm -f /etc/systemd/system/ws-ovpn.service
 rm -f /usr/bin/proxy3.js
 }
-#setopserviswebsoket
+setopserviswebsoket
 cd
 wget -qO /usr/bin/ssh-wsenabler "https://raw.githubusercontent.com/YaddyKakkoii/sclifetime/main/ssh-wsenabler"
 wget -qO /usr/bin/proxy3.js "https://raw.githubusercontent.com/YaddyKakkoii/sclifetime/main/proxy3.js"
@@ -1491,10 +1491,10 @@ RestartSec=1s
 WantedBy=multi-user.target
 EOF
 chmod +x /etc/systemd/system/sshws.service
-systemctl daemon-reload >/dev/null 2>&1
-systemctl enable sshws.service >/dev/null 2>&1
-systemctl start sshws.service >/dev/null 2>&1
-systemctl restart sshws.service >/dev/null 2>&1
+systemctl daemon-reload
+systemctl enable sshws.service
+systemctl start sshws.service
+systemctl restart sshws.service
 service sshws restart
 yellow() { echo -e "\\033[33;1m${*}\\033[0m"; }
 yellow "SSH WEBSOCKET TELAH AKTIF...!!"
