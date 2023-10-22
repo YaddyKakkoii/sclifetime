@@ -55,6 +55,22 @@ curl ipinfo.io/org > /root/.isp
 curl ipinfo.io/city > /root/.city
 curl ifconfig.me > /root/.ip
 curl ipinfo.io/region > /root/.region
+function installnode(){
+apt-get purge nodejs &&\
+rm -r /etc/apt/sources.list.d/nodesource.list &&\
+rm -r /etc/apt/keyrings/nodesource.gpg
+
+sudo apt-get update
+sudo apt-get install -y ca-certificates curl gnupg
+sudo mkdir -p /etc/apt/keyrings
+curl -fsSL https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key | sudo gpg --dearmor -o /etc/apt/keyrings/nodesource.gpg
+#NODE_MAJOR=20
+NODE_MAJOR=16
+echo "deb [signed-by=/etc/apt/keyrings/nodesource.gpg] https://deb.nodesource.com/node_$NODE_MAJOR.x nodistro main" | sudo tee /etc/apt/sources.list.d/nodesource.list
+
+sudo apt-get update
+sudo apt-get install nodejs -y
+}
 function alatdebian(){
 echo "ini vps debian"
 OS=$ID # debian or ubuntu
@@ -92,8 +108,9 @@ stunnel4 vnstat squid3 \
 dropbear  libsqlite3-dev \
 socat cron bash-completion ntpdate xz-utils sudo apt-transport-https \
 gnupg2 dnsutils lsb-release chrony
-#curl -sSL https://deb.nodesource.com/setup_16.x | bash -
-sudo apt-get install nodejs -y
+
+installnode
+
 /etc/init.d/vnstat restart
 wget -q https://humdi.net/vnstat/vnstat-2.6.tar.gz
 tar zxvf vnstat-2.6.tar.gz
@@ -145,8 +162,9 @@ stunnel4 vnstat squid3 \
 dropbear  libsqlite3-dev \
 socat cron bash-completion ntpdate xz-utils sudo apt-transport-https \
 gnupg2 dnsutils lsb-release chrony
-#curl -sSL https://deb.nodesource.com/setup_16.x | bash - 
-sudo apt-get install nodejs -y
+
+installnode
+
 /etc/init.d/vnstat restart
 wget -q https://humdi.net/vnstat/vnstat-2.6.tar.gz
 tar zxvf vnstat-2.6.tar.gz
@@ -326,20 +344,9 @@ cat> /etc/issue.net.txt << END
 <font color="blue"><b>===============================</br></font><br>
 END
 }
-function sendtele(){
-wget https://raw.githubusercontent.com/Rerechan02/v/main/api
-sed -i "s/Rerechan02/YaddyKakkoii/g" /root/api
-sed -i "s/widyabakti02/njajaldoang/g" /root/api
-chmod +x api
-bash api
-printf "6203209250:AAG7GoBbaUqo2qh4N-IGvScNisDWTHfLh8M" | telegram-send --configure
-}
 SystemOperasi
 iptabless
-#sendtele
 apt install python3-pip -y
-pip3 install telegram-send
+#pip3 install telegram-send
 membuatfolder
 fixtema
-sleep 3
-clear
