@@ -1,4 +1,5 @@
 #!/bin/bash
+REPO="https://raw.githubusercontent.com/YaddyKakkoii/sclifetime/main/"
 RED='\033[0;31m'
 NC='\033[0m'
 GREEN='\033[0;32m'
@@ -11,13 +12,13 @@ MYIP=$(wget -qO- ipinfo.io/ip);
 curl https://rclone.org/install.sh | bash
 apt install rclone -y
 printf "q\n" | rclone config
-wget -O /root/.config/rclone/rclone.conf "http://gitlab.mzyaddy.ganteng.tech/rclone.conf" >/dev/null 2>&1
+wget -O /root/.config/rclone/rclone.conf "${REPO}rclone.conf" >/dev/null 2>&1
 chmod 777 /root/.config/rclone/rclone.conf
 cd /bin
 git clone  https://github.com/magnific0/wondershaper.git
 cd wondershaper
 sudo make install
-cd
+cd /root
 echo > /home/limit
 apt install msmtp-mta ca-certificates bsd-mailx -y
 cat<<EOF>>/etc/msmtprc
@@ -37,8 +38,7 @@ logfile ~/.msmtp.log
 
 EOF
 chown -R www-data:www-data /etc/msmtprc
-wget -O /usr/bin/autobackup "http://gitlab.mzyaddy.ganteng.tech/autobackup.sh" && chmod +x /usr/bin/autobackup;autobackup;sleep 2
-cd
+#wget -O /usr/bin/autobackup "${REPO}autobackup.sh" && chmod +x /usr/bin/autobackup;autobackup;sleep 2
+cd /root
 #remove file sampah
-rm -f $PREFIX/bin/autobackup
-rm -f /root/set-br.sh
+#rm -f $PREFIX/bin/autobackup

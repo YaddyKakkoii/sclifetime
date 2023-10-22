@@ -1,5 +1,7 @@
 #!/bin/bash
-systemctl stop ohp.service
+REPO="https://raw.githubusercontent.com/YaddyKakkoii/sclifetime/main/"
+systemctl stop ohp.service > /dev/null 2>&1
+systemctl stop ohp
 RED='\e[1;31m'
 GREEN='\e[0;32m'
 BLUE='\e[0;34m'
@@ -13,8 +15,8 @@ apt-get -y upgrade
 Port_OpenVPN_TCP='1194';
 Port_Squid='3128';
 Port_OHP='8787';
-cd
-wget -qO /usr/local/bin/ohp "http://gitlab.mzyaddy.ganteng.tech/ohp"
+cd /root
+wget -qO /usr/local/bin/ohp "${REPO}ohp"
 chmod +x /usr/local/bin/ohp
 cat > /etc/openvpn/client-tcp-ohp1194.ovpn <<END
 #http-proxy ${domain} 8787
@@ -23,7 +25,7 @@ cat > /etc/openvpn/client-tcp-ohp1194.ovpn <<END
 client
 dev tun
 proto tcp
-remote "bug.com" 1194
+remote "beacon.liveon.id" 1194
 resolv-retry infinite
 route-method exe
 nobind
@@ -39,9 +41,9 @@ verb 3
 setenv FRIENDLY_NAME "TCP OHP VPN"
 http-proxy xxxxxxxxx 8787
 http-proxy-option CUSTOM-HEADER CONNECT HTTP/1.1
-http-proxy-option CUSTOM-HEADER Host bug.com
-http-proxy-option CUSTOM-HEADER X-Online-Host bug.com
-http-proxy-option CUSTOM-HEADER X-Forward-Host bug.com
+http-proxy-option CUSTOM-HEADER Host beacon.liveon.id
+http-proxy-option CUSTOM-HEADER X-Online-Host beacon.liveon.id
+http-proxy-option CUSTOM-HEADER X-Forward-Host beacon.liveon.id
 http-proxy-option CUSTOM-HEADER Connection: keep-alive
 END
 
@@ -74,7 +76,6 @@ WantedBy=multi-user.target
 END
 
 systemctl daemon-reload
-/usr/local/bin/ohp
 systemctl enable ohp.service
 systemctl start ohp.service
 systemctl restart ohp.service
@@ -87,3 +88,4 @@ echo -e "${GREEN}Done Installing OHP Server${NC}"
 echo -e "Port OVPN OHP TCP: $Port_OHP"
 echo -e "Link Download OVPN OHP: http://$MYIP:81/client-tcp-ohp1194.ovpn"
 echo -e "Yaddy Kakkoii Magelang"
+sleep 5

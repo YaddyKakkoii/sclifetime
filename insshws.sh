@@ -1,7 +1,6 @@
 #!/bin/bash
-function instalsshwebsocket(){
-#hapus pagar saat reinstall // uncomment cokk jancokk
-setopserviswebsoket(){
+REPO="https://raw.githubusercontent.com/YaddyKakkoii/sclifetime/main/"
+function setopserviswebsoket(){
 systemctl stop sshws.service
 tmux kill-session -t sshws
 systemctl stop ws-dropbear.service
@@ -20,18 +19,20 @@ rm -f /etc/systemd/system/ws-openssh.service
 rm -f /etc/systemd/system/ws-ovpn.service
 rm -f /usr/bin/proxy3.js
 }
+function instalsshwebsocket(){
+#hapus pagar saat reinstall // uncomment cokk jancokk
 setopserviswebsoket
-cd
-wget -qO /usr/bin/ssh-wsenabler "https://raw.githubusercontent.com/YaddyKakkoii/sclifetime/main/ssh-wsenabler"
-wget -qO /usr/bin/proxy3.js "https://raw.githubusercontent.com/YaddyKakkoii/sclifetime/main/proxy3.js"
-wget -qO /usr/local/bin/ws-dropbear "https://raw.githubusercontent.com/YaddyKakkoii/sclifetime/main/ws-dropbear"
-wget -qO /usr/local/bin/ws-stunnel "https://raw.githubusercontent.com/YaddyKakkoii/sclifetime/main/ws-stunnel"
-wget -qO /usr/local/bin/ws-openssh "https://raw.githubusercontent.com/YaddyKakkoii/sclifetime/main/ws-openssh"
-wget -qO /usr/local/bin/ws-ovpn "https://raw.githubusercontent.com/YaddyKakkoii/sclifetime/main/ws-ovpn"
-wget -qO /etc/systemd/system/ws-ovpn.service "https://raw.githubusercontent.com/YaddyKakkoii/sclifetime/main/ws-ovpn.service"
-wget -qO /etc/systemd/system/ws-dropbear.service "https://raw.githubusercontent.com/YaddyKakkoii/sclifetime/main/ws-dropbear.service"
-wget -qO /etc/systemd/system/ws-stunnel.service "https://raw.githubusercontent.com/YaddyKakkoii/sclifetime/main/ws-stunnel.service"
-wget -qO /etc/systemd/system/ws-openssh.service "https://raw.githubusercontent.com/YaddyKakkoii/sclifetime/main/ws-openssh.service"
+cd /root
+wget -qO /usr/bin/ssh-wsenabler "${REPO}ssh-wsenabler"
+wget -qO /usr/bin/proxy3.js "${REPO}proxy3.js"
+wget -qO /usr/local/bin/ws-dropbear "${REPO}ws-dropbear"
+wget -qO /usr/local/bin/ws-stunnel "${REPO}ws-stunnel"
+wget -qO /usr/local/bin/ws-openssh "${REPO}ws-openssh"
+wget -qO /usr/local/bin/ws-ovpn "${REPO}ws-ovpn"
+wget -qO /etc/systemd/system/ws-ovpn.service "${REPO}ws-ovpn.service"
+wget -qO /etc/systemd/system/ws-dropbear.service "${REPO}ws-dropbear.service"
+wget -qO /etc/systemd/system/ws-stunnel.service "${REPO}ws-stunnel.service"
+wget -qO /etc/systemd/system/ws-openssh.service "${REPO}ws-openssh.service"
 sleep 1
 chmod +x /usr/bin/ssh-wsenabler
 chmod +x /usr/bin/proxy3.js
@@ -71,13 +72,14 @@ RestartSec=1s
 WantedBy=multi-user.target
 EOF
 chmod +x /etc/systemd/system/sshws.service
-systemctl daemon-reload >/dev/null 2>&1
-systemctl enable sshws.service >/dev/null 2>&1
-systemctl start sshws.service >/dev/null 2>&1
+systemctl daemon-reload
+systemctl enable sshws.service
+systemctl start sshws.service
 systemctl restart sshws.service >/dev/null 2>&1
 service sshws restart
 yellow() { echo -e "\\033[33;1m${*}\\033[0m"; }
 yellow "SSH WEBSOCKET TELAH AKTIF...!!"
+echo ""
 echo -e "$COLOR1 ${NC}  ${WH}[${COLOR1}INFO${WH}]${NC} ${COLOR1}•${NC} ${green}SSH Websocket Started${NC}"
 echo -e "$COLOR1┌────────────────────── ${WH}BY${NC} ${COLOR1}───────────────────────┐${NC}"
 echo -e "$COLOR1 ${NC}                ${WH}• YADDY KAKKOII MAGELANG •${NC}                 $COLOR1 $NC"
