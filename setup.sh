@@ -239,5 +239,5 @@ rm -f /root/key.pem
 rm -f /root/cert.pem
 rm -f /root/vpn.sh
 rm -f /root/bbr.sh
-sleep 15
-reboot
+sleep 10
+menu
