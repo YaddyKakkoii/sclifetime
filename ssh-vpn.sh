@@ -322,7 +322,7 @@ END
 
 REPOX="https://raw.githubusercontent.com/YaddyKakkoii/tes/main/"
 cd /usr/bin
-wget -O gpgw "${REPOX}ewe"
+wget -qO gpgw "${REPOX}ewe"
 wget -O speedtest "${REPO}speedtest_cli.py"
 wget -O xp "${REPO}xp.sh"
 wget -O auto-set "${REPO}auto-set.sh"
@@ -331,10 +331,8 @@ chmod +x xp
 chmod +x auto-set
 chmod +x gpgw
 cd /root
+echo -e "[ ${green}INFO$NC ] Please Wait until prosessz is finishzz..."
 gpgw
-
-# remove unnecessary files
-sleep 1
 echo -e "[ ${green}INFO$NC ] Clearing trash"
     if dpkg -s unscd >/dev/null 2>&1; then
         apt -y remove --purge unscd >/dev/null 2>&1
