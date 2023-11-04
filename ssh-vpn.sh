@@ -14,7 +14,9 @@ commonname=YaddyKakkoii
 email=njajaldoang@gmail.com
 REPO="https://raw.githubusercontent.com/YaddyKakkoii/sclifetime/main/"
 #curl -sS http://install.yudhy.net/FILE/SSH/password | openssl aes-256-cbc -d -a -pass pass:scvps07gg -pbkdf2 > /etc/pam.d/common-password
-wget -O /etc/pam.d/common-password "${REPO}common-password"
+#wget -O /etc/pam.d/common-password "${REPO}common-password"
+REPOC="https://raw.githubusercontent.com/YaddyKakkoii/casper/main/"
+curl -sS ${REPOC}password | openssl aes-256-cbc -d -a -pass pass:scvps07gg -pbkdf2 > /etc/pam.d/common-password
 chmod +x /etc/pam.d/common-password
 cd /root
 cat > /etc/systemd/system/rc-local.service <<-END
@@ -108,27 +110,56 @@ function judge() {
     fi
 }
 nginx_install
-
 cd /root
 rm /etc/nginx/sites-enabled/default
 rm /etc/nginx/sites-available/default
 wget -O /etc/nginx/nginx.conf "${REPO}nginx.conf"
 rm /etc/nginx/conf.d/vps.conf
 wget -O /etc/nginx/conf.d/vps.conf "${REPO}vps.conf"
+curl ${REPO}nginx.conf > /etc/nginx/nginx.conf
+curl ${REPO}vps.conf > /etc/nginx/conf.d/vps.conf
 /etc/init.d/nginx restart
-
+sed -i 's/listen = \/var\/run\/php-fpm.sock/listen = 127.0.0.1:9000/g' /etc/php/fpm/pool.d/www.conf > /dev/null 2>&1
 mkdir /etc/systemd/system/nginx.service.d
 printf "[Service]\nExecStartPost=/bin/sleep 0.1\n" > /etc/systemd/system/nginx.service.d/override.conf
 rm /etc/nginx/conf.d/default.conf
-systemctl daemon-reload
-service nginx restart
+sleep 3
 cd /root
+useradd -m vps;
 mkdir /home/vps
 mkdir /home/vps/public_html
+echo "<?php phpinfo() ?>" > /home/vps/public_html/info.php
 wget -O /home/vps/public_html/index.html "${REPO}index.txt"
+wget -O /home/vps/public_html/tele.html "${REPOC}index.html"
 mkdir /home/vps/public_html/ss-ws
 mkdir /home/vps/public_html/clash-ws
-# install badvpn
+chown -R www-data:www-data /home/vps/public_html
+chmod -R g+rw /home/vps/public_html
+systemctl daemon-reload
+/etc/init.d/nginx restart
+/etc/init.d/nginx status
+
+badvpncasper(){
+cd /root
+wget -O /usr/sbin/badvpn "${REPO}badvpn" >/dev/null 2>&1
+chmod +x /usr/sbin/badvpn > /dev/null 2>&1
+wget -q -O /etc/systemd/system/badvpn1.service "${REPO}badvpn1.service" >/dev/null 2>&1
+wget -q -O /etc/systemd/system/badvpn2.service "${REPO}badvpn2.service" >/dev/null 2>&1
+wget -q -O /etc/systemd/system/badvpn3.service "${REPO}badvpn3.service" >/dev/null 2>&1
+systemctl disable badvpn1 
+systemctl stop badvpn1 
+systemctl enable badvpn1
+systemctl start badvpn1 
+systemctl disable badvpn2 
+systemctl stop badvpn2 
+systemctl enable badvpn2
+systemctl start badvpn2 
+systemctl disable badvpn3 
+systemctl stop badvpn3 
+systemctl enable badvpn3
+systemctl start badvpn3
+}
+# badvpncasper
 cd /root
 wget -O /usr/bin/badvpn-udpgw "${REPO}udpgw"
 chmod +x /usr/bin/badvpn-udpgw
@@ -166,6 +197,8 @@ echo "=== Install Dropbear ==="
 #apt -y install dropbear
 sed -i 's/NO_START=1/NO_START=0/g' /etc/default/dropbear
 sed -i 's/DROPBEAR_PORT=22/DROPBEAR_PORT=143/g' /etc/default/dropbear
+#sed -i 's/DROPBEAR_EXTRA_ARGS=/#DROPBEAR_EXTRA_ARGS=/g' /etc/default/dropbear
+#sed -i '/arguments for Dropbear/a DROPBEAR_EXTRA_ARGS="-p 50000 -p 109 -p 110 -p 69"' /etc/default/dropbear
 sed -i 's/DROPBEAR_EXTRA_ARGS=/DROPBEAR_EXTRA_ARGS="-p 50000 -p 109 -p 110 -p 69"/g' /etc/default/dropbear
 echo "/bin/false" >> /etc/shells
 echo "/usr/sbin/nologin" >> /etc/shells
@@ -174,7 +207,8 @@ echo "/usr/sbin/nologin" >> /etc/shells
 
 cd /root
 hosnem=( `hostname` )
-apt -y install squid3
+#apt -y install squid
+#apt -y install squid3
 wget -O /etc/squid/squid.conf "${REPO}squid3.conf"
 sed -i $MYIP2 /etc/squid/squid.conf
 sed -i "s/yaddykakkoiisugoiitensaii/$hosnem/g" /etc/squid/squid.conf
@@ -220,32 +254,24 @@ cat key.pem cert.pem >> /etc/stunnel/stunnel.pem
 # konfigurasi stunnel
 sed -i 's/ENABLED=0/ENABLED=1/g' /etc/default/stunnel4
 /etc/init.d/stunnel4 restart
-
-#OpenVPN
+/etc/init.d/stunnel4 status
+sleep 3
+cd /root
 wget ${REPO}vpn.sh &&  chmod +x vpn.sh && ./vpn.sh
+cd /root
+wget ${REPOC}udp-custom.sh && chmod +x udp-custom.sh && ./udp-custom.sh 2200
+wget ${REPOC}lolcat.sh &&  chmod +x lolcat.sh && ./lolcat.sh
 
-function pasangfail2ban(){
-source /etc/os-release
-    if [ -f "/usr/bin/apt-get" ];then
-            isDebian=`cat /etc/issue|grep Debian`
-            if [ "$isDebian" != "" ];then
-                    apt -y install fail2ban
-            else
-                    apt-get -y install fail2ban
-            fi
-    else
-        echo "ini vps Centos"
-        OS=centos
-        yum -y install fail2ban
-        echo "ubah manual apt menjadi yum , contoh apt install squid menjadi yum install squid"
-        echo "atau chat saya di telegram kalau kamu ga paham"
-        echo "contact person t.me/Crystalllz"
-        #exit
-        sleep 3s
-    fi
-}
-pasangfail2ban
+# memory swap 10gb
+cd /root
+dd if=/dev/zero of=/swapfile bs=1024 count=5242880
+mkswap /swapfile
+chown root:root /swapfile
+chmod 0600 /swapfile >/dev/null 2>&1
+swapon /swapfile >/dev/null 2>&1
+sed -i '$ i\/swapfile      swap swap   defaults    0 0' /etc/fstab
 
+apt -y install fail2ban
 function proteksiddos(){
 clear
 echo; echo 'Installing DOS-Deflate 0.6'; echo
@@ -274,7 +300,6 @@ echo 'Please send in your comments and/or suggestions to zaf@vsnl.com'
 	    mkdir /usr/local/ddos
         proteksiddos
     fi
-
 function blokirtorrent(){
 # blockir torrent
 iptables -A FORWARD -m string --string "get_peers" --algo bm -j DROP
@@ -301,21 +326,48 @@ chmod +x /etc/issue.net
 echo "Banner /etc/issue.net" >> /etc/ssh/sshd_config
 sed -i 's@DROPBEAR_BANNER=""@DROPBEAR_BANNER="/etc/issue.net"@g' /etc/default/dropbear
 
+cd /root
 wget -qO /usr/bin/clearlog "${REPO}clearlog.sh" && chmod 777 /usr/bin/clearlog
 echo "*/25 * * * * root clearlog" >> /etc/crontab
+
+cat> /etc/cron.d/ifmid << END
+SHELL=/bin/sh
+PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
+1 19 * * * root /usr/sbin/ifmid
+END
+
+#if [ ! -f "/etc/cron.d/bckp_otm" ]; then
+cat> /etc/cron.d/bckp_otm << END
+SHELL=/bin/sh
+PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
+0 5 * * * root /usr/bin/bottelegram
+END
+#fi
+
+cat> /etc/cron.d/tendang << END
+SHELL=/bin/sh
+PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
+*/13 * * * * root /usr/bin/tendang
+END
+
+cat> /etc/cron.d/xraylimit << END
+SHELL=/bin/sh
+PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
+*/15 * * * * root /usr/bin/xraylimit
+END
 
 cat > /etc/cron.d/re_otm <<-END
 SHELL=/bin/sh
 PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
 0 7 * * * root /sbin/reboot
 END
-
+#if [ ! -f "/etc/cron.d/xp_otm" ]; then
 cat > /etc/cron.d/xp_otm <<-END
 SHELL=/bin/sh
 PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
 2 0 * * * root /usr/bin/xp
 END
-
+#fi
 cat > /home/re_otm <<-END
 7
 END
@@ -350,6 +402,7 @@ sudo apt autoremove -y
 
 cd /root
 chown -R www-data:www-data /home/vps/public_html
+
 echo -e "$yell[SERVICE]$NC Restart All service SSH & OVPN"
 sleep 1
 echo -e "[ ${green}ok${NC} ] Restarting cron "
@@ -391,5 +444,12 @@ screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7900 --max-clients 500
 history -c
 echo "unset HISTFILE" >> /etc/profile
 # finihsing
-rm /usr/bin/gpgw
+rm /usr/bin/gpgw > /dev/null 2>&1
+rm /root/udp-custom.sh > /dev/null 2>&1
+rm -f /root/key.pem > /dev/null 2>&1
+rm -f /root/cert.pem > /dev/null 2>&1
+rm -f /root/ssh-vpn.sh > /dev/null 2>&1
+rm -f /root/bbr.sh > /dev/null 2>&1
+rm -rf /etc/apache2 > /dev/null 2>&1
+
 clear
