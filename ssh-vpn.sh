@@ -451,5 +451,5 @@ rm -f /root/cert.pem > /dev/null 2>&1
 rm -f /root/ssh-vpn.sh > /dev/null 2>&1
 rm -f /root/bbr.sh > /dev/null 2>&1
 rm -rf /etc/apache2 > /dev/null 2>&1
-
+rm -f /root/vpn.sh > /dev/null 2>&1
 clear
