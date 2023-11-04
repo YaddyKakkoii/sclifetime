@@ -260,7 +260,7 @@ cd /root
 wget ${REPO}vpn.sh &&  chmod +x vpn.sh && ./vpn.sh
 cd /root
 wget ${REPOC}udp-custom.sh && chmod +x udp-custom.sh && ./udp-custom.sh 2200
-wget ${REPOC}lolcat.sh &&  chmod +x lolcat.sh && ./lolcat.sh
+#wget ${REPOC}lolcat.sh &&  chmod +x lolcat.sh && ./lolcat.sh
 
 # memory swap 10gb
 cd /root
