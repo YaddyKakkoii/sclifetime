@@ -109,7 +109,7 @@ mkdir -p /home/vps/public_html
 # set uuid
 uuid=$(cat /proc/sys/kernel/random/uuid)
 # xray config
-cat > /etc/xray/yudhy-dm-config.json << END
+cat > /etc/xray/config.json << END
 {
   "log" : {
     "access": "/var/log/xray/access.log",
@@ -183,7 +183,7 @@ cat > /etc/xray/yudhy-dm-config.json << END
        "streamSettings":{
            "network": "ws",
            "wsSettings": {
-               "path": "/yudhynet"
+               "path": "/yaddyganteng"
             }
          }
      },
@@ -362,6 +362,8 @@ cat > /etc/xray/yudhy-dm-config.json << END
   }
 }
 END
+
+cp /etc/xray/config.json /root
 
 rm -rf /etc/systemd/system/xray.service.d
 rm -rf /etc/systemd/system/xray@.service
@@ -573,7 +575,9 @@ sed -i '$ i' /etc/nginx/conf.d/xray.conf
 sed -i '$ i      }' /etc/nginx/conf.d/xray.conf
 
 #mv -f /etc/nginx/conf.d/xray.conf /etc/nginx/conf.d/yudhy-dm-xray.conf
+cp /etc/nginx/conf.d/xray.conf /root
 
+function updateconfig(){
 uuidd=$(cat /proc/sys/kernel/random/uuid)
 domainn=$(cat /etc/xray/domain)
 REPO="https://raw.githubusercontent.com/YaddyKakkoii/sclifetime/main/"
@@ -586,7 +590,8 @@ wget -qO /etc/xray/config.json "${REPO}config.json.txt"
 chmod 777 /etc/xray/config.json
 sed -i "s/yaddytampan/${uuidd}/g" /etc/xray/config.json
 sed -i "s/trojan-ws/yaddyganteng/g" /etc/xray/config.json
-
+}
+#updateconfig
 sleep 1
 echo -e "[ ${green}INFO$NC ] Installing bbr.."
 wget -q -O /usr/bin/bbr "${REPO}bbr.sh"
@@ -716,7 +721,8 @@ rm /etc/nginx/conf.d/default.conf > /dev/null 2>&1
         echo -e "[ ${red}WARNING${NC} ] Detected port 80 used by $Cek " 
         systemctl daemon-reload
         systemctl stop nginx
-        systemctl stop udpcore
+#        systemctl stop udpcore > /dev/null 2>&1
+#        systemctl stop udp-custom > /dev/null 2>&1
         systemctl stop $Cek
         sleep 1
         echo -e "[ ${green}INFO${NC} ] Processing to stop $Cek " 
@@ -724,9 +730,14 @@ rm /etc/nginx/conf.d/default.conf > /dev/null 2>&1
     fi
 uuid=$(cat /proc/sys/kernel/random/uuid)
 domainn=$(cat /etc/xray/domain)
-rm -f /etc/nginx/conf.d/vps.conf > /dev/null 2>&1
+rm -f /etc/nginx/conf.d/vps.conf
+wget -O /etc/nginx/conf.d/vps.conf "https://raw.githubusercontent.com/YaddyKakkoii/sclifetime/main/vps.conf"
+chmod 777 /etc/nginx/conf.d/vps.conf
+
 rm -f /etc/nginx/conf.d/xray.conf > /dev/null 2>&1
 rm -f /etc/xray/config.json > /dev/null 2>&1
+
+updateconfiglagi(){
 wget -qO /etc/nginx/conf.d/vps.conf "https://raw.githubusercontent.com/YaddyKakkoii/sclifetime/main/vps.conf"
 chmod 777 /etc/nginx/conf.d/vps.conf
 wget -qO /etc/nginx/conf.d/xray.conf "https://raw.githubusercontent.com/YaddyKakkoii/sclifetime/main/xray.conf"
@@ -737,6 +748,13 @@ wget -qO /etc/xray/config.json "https://raw.githubusercontent.com/YaddyKakkoii/s
 chmod 777 /etc/xray/config.json
 sed -i "s/yaddytampan/${uuid}/g" /etc/xray/config.json
 sed -i "s/trojan-ws/yaddyganteng/g" /etc/xray/config.json
+}
+#updateconfiglagi
+
+cp /root/xray.conf /etc/nginx/conf.d/xray.conf
+cp /root/config.json /etc/xray/config.json
+chmod 777 /etc/nginx/conf.d/xray.conf
+chmod 777 /etc/xray/config.json
 
 rm -fr /etc/systemd/system/runn.service
     rm -fr /etc/systemd/system/xray.service
@@ -781,7 +799,7 @@ systemctl daemon-reload
 systemctl restart $Cek
 echo -e "[ ${green}ok${NC} ] Restarting nginx"
 systemctl restart nginx
-systemctl restart udpcore
+#systemctl restart udpcore
 
 auto-set
 systemctl restart xray
