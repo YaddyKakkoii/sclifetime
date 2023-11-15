@@ -1,11 +1,7 @@
 # sclifetime
 NOTE: UNTUK MENGHIDUPKAN NGINX, PILIH MENU PURGE
 
-SETELAH INSTALL SECARA DEFAULT NGINX AKAN OFF 😂
-
-JANGAN BINGUNG YA DEK :v easy
-
-script ini bebas untuk dimodifikasi atau diedit kalau kamu tau caranya 😏
+SETELAH INSTALL SECARA DEFAULT NGINX AKAN OFF 
 
 Fresh install:
 Utk Debian:
