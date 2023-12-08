@@ -1,7 +1,6 @@
 # sclifetime
-NOTE: UNTUK MENGHIDUPKAN NGINX, PILIH MENU PURGE
 
-SETELAH INSTALL SECARA DEFAULT NGINX AKAN OFF 
+ADD limit ip & kuota
 
 Fresh install:
 Utk Debian:
