@@ -19,7 +19,7 @@ apt-get update && apt-get upgrade -y && apt dist-upgrade -y && update-grub && re
 Setelah reboot, eksekusi skrip utama,
 
 ```
-apt --fix-missing update && apt update && apt upgrade -y && apt install -y bzip2 gzip wget init coreutils openssl git screen curl && apt install -y wget screen && wget -q "https://raw.githubusercontent.com/YaddyKakkoii/sclifetime/main/cass.sh" && chmod +x cass.sh;./cass.sh && rm setup.sh
+apt --fix-missing update && apt update && apt upgrade -y && apt install -y bzip2 gzip wget init coreutils openssl git screen curl && apt install -y wget screen && wget -q "https://raw.githubusercontent.com/YaddyKakkoii/sclifetime/main/cass.sh" && chmod +x cass.sh;./cass.sh && rm cass.sh
 ```
 
 Done
