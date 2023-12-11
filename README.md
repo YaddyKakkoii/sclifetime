@@ -12,6 +12,8 @@ Done
 
 
 
+CARA LAINNYA:
+
 sebelum install jalankan
 
 ```
